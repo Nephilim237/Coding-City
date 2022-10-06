@@ -1,4 +1,3 @@
-
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php
@@ -14,7 +13,15 @@
 .phpunit.result.cache
 ###< phpunit/phpunit ###
 
+###> PhpStorm/PhpStorm ###
+/.idea
+###< PhpStorm/PhpStorm ###
+
 ###> symfony/phpunit-bridge ###
 .phpunit.result.cache
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
+
+###> liip/imagine-bundle ###
+/public/media/cache/
+###< liip/imagine-bundle ###

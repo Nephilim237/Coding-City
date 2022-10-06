@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+{% form_theme AboutUserForm 'bootstrap_5_layout.html.twig' %}
+
+{% block title %}Parlez nous de vous{% endblock %}
+
+{% block body %}
+    <section class="section-form my-5 py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8"></div>
+                <div class="col-md-4">
+{#                    {% for flash_error in app.flashes('reset_password_error') %}#}
+{#                        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>#}
+{#                    {% endfor %}#}
+                    <h1 class="h3 fw-light">A propos de vous.</h1>
+
+                    {{ form_start(AboutUserForm) }}
+                    {{ form_row(AboutUserForm.bio) }}
+                    <div>
+                        <small>
+                            Parlez nous de vous en quelques mots.
+                        </small>
+                    </div>
+                    <div class="my-4 d-grid gap-2">
+                        <button class="btn btn-primary btn-lg rounded-0" type="submit">Mettre à jour</button>
+                        <div class="d-flex w-100 justify-content-center align-items-center">
+                            <a href="{{ path('app_home') }}" class="text-center mt-1 mx-2">Page d'Accueil</a> |
+                            <a href="{{ path('app_user_profile', {'id': app.user.id}) }}" class="text-center mt-1 mx-2">Voir mon profil.</a>
+                        </div>
+                    </div>
+                    {{ form_end(AboutUserForm) }}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

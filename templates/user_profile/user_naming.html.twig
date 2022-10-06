@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+{% form_theme userNamingForm 'bootstrap_5_layout.html.twig' %}
+{% block title %}Mettre à jour le profil{% endblock %}
+
+{% block body %}
+    {% for flash_error in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+
+    <section class="section-form py-5 my-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-6 col-sm-10"></div>
+                <div class="col-lg-4 col-md-6 col-sm-10">
+                    <h1 class="fw-light h3 nunito-sans">Informations personnelles</h1>
+                    {{ form_start(userNamingForm) }}
+                    <div class="mb-3">
+                        {{ form_row(userNamingForm.firstname) }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_row(userNamingForm.lastname) }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_row(userNamingForm.username) }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_row(userNamingForm.occupation) }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_row(userNamingForm.country) }}
+                    </div>
+                    <div class="my-4 d-grid gap-2">
+                        <button class="btn btn-primary btn-lg rounded-0" type="submit">Mettre à jour</button>
+                        <div class="d-flex w-100 justify-content-center align-items-center">
+                            <a href="{{ path('app_home') }}" class="text-center mt-1 mx-2">Page d'Accueil</a> |
+                            <a href="{{ path('app_user_profile', {'id': app.user.id}) }}" class="text-center mt-1 mx-2">Voir mon profil.</a>
+                        </div>
+                    </div>
+                    {{ form_end(userNamingForm) }}
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
+

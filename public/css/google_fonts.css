@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@100;200;300;400;500;600;700;800;900&family=Nunito+Sans:wght@200;300;400;600;700;800;900&display=swap');
+
+.heebo {
+    font-family: 'Heebo', sans-serif;
+}
+
+.nunito-sans {
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+
+:root {
+    /*--primary: #06BBCC;*/
+    /*--light: #F0FBFC;*/
+    --dark: #181d38;
+    /*    Sailing Color palette ==== */
+    --cc-primary: #e65c4f;
+    --bs-primary: #e65c4f !important;
+    --cc-primary-dark: #df3d2e;
+    /*--primary: #326789;*/
+    --cc-secondary: #78a6c8;
+    --cc-light: #e9eef2;
+    --cc-sailing: #326789;
+    --cc-white: #ffffff;
+    --cc-text-color: #565360;
+    /*--sailing: #e65c4f;*/
+}
+
+.cc-text-primary {
+    color: var(--cc-primary);
+}
+
+.cc-text-ligth {
+    color: var(--cc-light);
+}
+
+.cc-text-color {
+    color: var(--cc-text-color);
+}
+
+.bg-sailing {
+    background-color: var(--cc-sailing);
+}
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+    font-family: "Nunito Sans", sans-serif;
+    font-weight: 600;
+    color: var(--cc-text-color);
+}
+
+a {
+    color: var(--cc-primary);
+    font-weight: 500;
+}
+
+a:hover {
+    color: var(--cc-primary-dark);
+}
