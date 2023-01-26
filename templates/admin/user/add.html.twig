@@ -1,0 +1,46 @@
+{% extends 'admin/base.html.twig' %}
+
+
+{% block body %}
+    <div class="container">
+        <header class="header">
+            <div class="heading-area header__heading-area">
+                <h1 class="heading-area__title">Ajouter un nouveau cadre</h1>
+            </div>
+
+        </header>
+
+        {% for message in app.flashes('remove_message') %}
+            <div class="alert alert-primary d-flex align-items-center alert-dismissible" role="alert" style="z-index: 10;">
+                <i class="ri-information-fill fa-2x"></i>{{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    </div>
+    <section class="section-form py-5 my-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 col-sm-10">
+                    {{ form_start(adminAddUserForm) }}
+                    <div class="mb-3">
+                        {{ form_row(adminAddUserForm.email) }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_row(adminAddUserForm.roles) }}
+                    </div>
+                    <div class="d-grid gap-2 my-5">
+                        <button type="submit" class="btn btn-outline-light btn-lg rounded-0">Ajouter <i class="fa-solid fa-user-plus"></i></button>
+                        <a href="{{ path('admin_users') }}" class="text-center theme-text mt-1 mx-2">Liste des utilisateurs.</a>
+                    </div>
+                    {{ form_end(adminAddUserForm) }}
+                </div>
+                <div class="col-lg-8 col-md-6 col-sm-10"></div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block title %}
+Ajouter un nouveau cadre
+{% endblock %}
+

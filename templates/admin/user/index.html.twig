@@ -1,0 +1,149 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Liste des utilisateurs{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <header class="header">
+            <div class="heading-area header__heading-area">
+                <h1 class="heading-area__title">Liste des utilisateurs</h1>
+                {#                <p class="heading-area__paragraph">Total Followers: 23,004</p> #}
+            </div>
+        </header>
+
+        {% for message in app.flashes('admin_home_messages') %}
+            <div class="alert alert-primary d-flex align-items-center alert-dismissible" role="alert" style="z-index: 10;">
+                <i class="ri-information-fill fa-2x"></i>{{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+
+        <table class="table table-striped table-hover theme-text table-borderless">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Activé</th>
+                <th scope="col">Username</th>
+                <th scope="col">Role</th>
+                <th scope="col">Occupation</th>
+                <th scope="col">Pays</th>
+                <th scope="col">Bio</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% if users | length == 0 %}
+                <tr>
+                    Aucun utilisateur pour le moment
+                </tr>
+            {% else %}
+                {% for user in users %}
+                    <tr class="fw-normal align-middle">
+                        <th scope="row">{{ user.id }}</th>
+
+                        <td class="d-flex align-items-center">
+                            {% if user.image.image is defined %}
+                                <img src="{{ asset('images/user/profile/' ~ user.image.image) | imagine_filter('profile_image_page') }}" alt="
+                            User {{ user.userNaming.firstname ??user.id }}" height="40" width="40" class="small me-3 rounded-circle">
+                            {% else %}
+                                <img src="{{ asset('images/user/profile/default/da_knowledge_logo_no_gradient_white_bg.png') | imagine_filter
+                                    ('profile_image_page') }}"
+                                     alt="Photo absente"
+                                     height="40"
+                                     width="40" class="small me-3 rounded-circle">
+                            {% endif %}
+                            <div>
+                                <p class="mb-0">{{ user.userNaming.fullUserName ?? '' }}</p>
+                                <small class="fw-500 fst-italic">{{ user.email }}</small>
+                            </div>
+                        </td>
+
+                        <td>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" {{ user.isVerified ?
+                                'checked' : '' }} data-user_id="{{ user.id }}">
+                                <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                            </div>
+                        </td>
+
+                        <td>
+                            {{ user.userNaming.username ?? '' }}
+                        </td>
+
+                        <td>{{ user.roles[0] ?? '' }}</td>
+                        <td>{{ user.userNaming.occupation ?? '<span class="small fst-italic fw-bold">Non définie</span>' }}</td>
+                        <td>{{ user.userNaming.country ?? '<span class="small fst-italic fw-bold">Non définie</span>' }}</td>
+
+                        <td>
+                            {% if user.aboutUser.bio is defined %}
+                                {{ user.aboutUser.bio | u.truncate(20, '...', false) }}
+                            {% else %}
+                                <span class="small fst-italic fw-bold">Non définie</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <div class="btn-group dashboard-action-buttons">
+                                <a href="#" title="Modifier" class="fs-5 p-1 cc-edit text-blue"><i class="ri-edit-2-fill"></i></a>
+                                <a href="#" title="Info" class="fs-5 p-1 cc-details text-light"><i class="ri-information-fill"></i></a>
+                                <a href="#" title="Supprimer" class="fs-5 p-1 cc-delete text-danger" data-user_id="{{ user.id }}"
+                                   data-user_name="{{ user
+                                   .userNaming
+                                   .fullUserName ?? user.email }}"><i
+                                            class="ri-delete-bin-3-fill"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+            </tbody>
+        </table>
+
+
+
+
+
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        window.addEventListener('load', () => {
+            //Activation et deactivation de verification de profil d'un utilisateur
+            let switchButtons = document.querySelectorAll('input[type=checkbox]');
+            switchButtons.forEach((button, indexButton) => {
+                button.addEventListener('click', function () {
+                    let xmlRequest = new XMLHttpRequest();
+                    xmlRequest.open('get', `/admin/users/enable/${this.dataset.user_id}`);
+                    xmlRequest.send();
+                });
+            })
+
+            //Suppression utilisateur avec popup de sweetalert2
+            let deleteButtons = document.querySelectorAll('a.cc-delete');
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    Swal.fire({
+                        title: `Confirmer la suppression de <p class="fw-bold fst-italic small text-primary"> ${this.dataset.user_name} </p>`,
+                        text: "Cette action est irreversible.",
+                        icon: 'error',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Supprimer'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = `/admin/users/remove/${this.dataset.user_id}`;
+                            // Swal.fire(
+                            //     'Suppression terminée!',
+                            //     `Vous avez retiré l'utilisateur ${this.dataset.user_name}`,
+                            //     'success'
+                            // )
+                        }
+                    })
+
+                });
+            })
+        })
+    </script>
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Liste des catégories{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <header class="header">
+            <div class="heading-area header__heading-area">
+                <h1 class="heading-area__title">Liste des catégories</h1>
+                {#                <p class="heading-area__paragraph">Total Followers: 23,004</p> #}
+            </div>
+        </header>
+
+        {% for message in app.flashes('category_add_message') %}
+            <div class="alert alert-primary d-flex align-items-center alert-dismissible" role="alert" style="z-index: 10;">
+                <i class="ri-information-fill fa-2x"></i>{{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+
+        <table class="table table-striped table-hover theme-text table-borderless">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nom</th>
+                <th scope="col">slug</th>
+                <th scope="col">Auteur</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% if categories | length == 0 %}
+                <tr>
+                    Aucun catégories pour le moment
+                </tr>
+            {% else %}
+                {% for category in categories %}
+                    <tr class="fw-normal align-middle">
+                        <th scope="row">{{ category.id }}</th>
+
+                        <td class="">{{ category.title }}</td>
+                        <td class="">{{ category.slug }}</td>
+
+                        <td> {{ category.author.userNaming.fullUserName ?? category.author.email }} </td>
+                        <td>
+                            <div class="btn-group dashboard-action-buttons align-content-center">
+                                <a href="#" title="Supprimer" class="fs-5 p-1 cc-delete text-danger" data-category_id="{{ category.id }}"
+                                   data-category_name="{{ category.slug}}"><i class="ri-delete-bin-3-fill"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        window.addEventListener('load', () => {
+            // Suppression utilisateur avec popup de sweetalert2
+            let deleteButtons = document.querySelectorAll('a.cc-delete');
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    Swal.fire({
+                        title: `Confirmer la suppression de la catégorie <p class="fw-bold fst-italic small text-primary"> ${this.dataset
+                            .category_name} </p>`,
+                        text: "Cette action est irreversible.",
+                        icon: 'error',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Supprimer'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = `/admin/category/remove/${this.dataset.category_id}`;
+                            // Swal.fire(
+                            //     'Suppression terminée!',
+                            //     `Vous avez retiré l'utilisateur ${this.dataset.user_name}`,
+                            //     'success'
+                            // )
+                        }
+                    })
+
+                });
+            })
+        })
+    </script>
+{% endblock %}

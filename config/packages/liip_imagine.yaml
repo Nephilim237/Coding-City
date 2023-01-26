@@ -8,11 +8,11 @@ liip_imagine:
     # configure resolvers
     resolvers:
         default:
-            web_path: ~
+            web_path:
+                web_root: "%kernel.project_dir%/public"
+                cache_prefix: "media/cache"
 
     filter_sets:
-        cache: ~
-
         profile_image_page:
             quality: 75
             filters:
@@ -22,3 +22,9 @@ liip_imagine:
             quality: 75
             filters:
                 thumbnail: { size: [ 28, 28 ], mode: outbound }
+
+#        profile_image_common:
+#            quality: 75
+#            filter:
+#                thumbnail:
+#                    size: []

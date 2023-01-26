@@ -113,4 +113,9 @@ class UserNaming
     {
         return "{$this->getFirstname()} {$this->getLastname()}";
     }
+
+    public function __toString(): string
+    {
+        return "{$this->firstname} {$this->lastname}";
+    }
 }

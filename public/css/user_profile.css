@@ -6,9 +6,6 @@
 }
 
 .cc-card {
-    --bg: #fff;
-    /*--bg-secundary: #06BBCC;*/
-    --bg-shadow: #f5f7fc40;
     --color: var(--cc-text-color);
     max-width: 480px;
     width: 100%;
@@ -17,20 +14,11 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    color: var(--color);
-    background: var(--bg);
     padding: 1.5em;
     border-radius: 16px;
-    border: 2px solid var(--cc-primary);
-    box-shadow: 0 4px 16px var(--bg-shadow);
+    border: 2px solid var(--cc-sailing);
+    box-shadow: 0 4px 16px var(--cc-sailing);
     transition: all ease 0.75s;
-}
-
-.cc-card.dark {
-    --bg: #13161c;
-    --cc-primary: #1a1f29;
-    --color: #d4d6fa;
-    box-shadow: none;
 }
 
 .cc-card .cc-avatar {
@@ -38,14 +26,12 @@
     max-width: 100%;
     height: 150px;
     max-height: 100%;
-    margin-top: -75px;
-    box-shadow: 0 0 16px var(--bg);
+    margin-top: -100px;
     transition: all ease-out 0.75s;
 }
 
 .cc-avatar .avatar-inner {
-    border: 6px solid var(--cc-primary);
-
+    border: 6px solid var(--cc-sailing);
 }
 
 .cc-card .cc-avatar img {
@@ -62,7 +48,7 @@
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    background-color: var(--cc-primary);
+    background-color: var(--cc-sailing);
     color: var(--cc-white);
     border: 1px solid transparent;
     transition: .3s ease-in-out;
@@ -87,7 +73,7 @@
     margin: 1em 0;
     padding: 12px;
     border-radius: 4px;
-    background: var(--cc-primary);
+    /*background: rgba(230, 92, 79, 0.3);*/
     overflow: auto;
     transition: all ease-out 0.75s;
 }
@@ -126,7 +112,7 @@
     padding: 0.75em;
     color: #fff;
     background: #dadbe8;
-    border: 2px solid var(--cc-primary);
+    border: 2px solid var(--cc-sailing);
     border-radius: 50%;
     transition: all ease 0.5s;
 }
@@ -165,91 +151,6 @@
     height: 12px;
     margin-top: auto;
     border-radius: 12px;
-    background: var(--cc-primary);
+    background: var(--cc-sailing);
     transition: all ease 0.75s;
-}
-
-.color-mode .cc-toggle {
-    --size: 64px;
-    --bg: #fff;
-    width: calc(var(--size) * 2);
-    height: var(--size);
-    cursor: pointer;
-    user-select: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-    outline: 2px solid #f5f7fc;
-    border-radius: var(--size);
-    background: var(--bg);
-    box-shadow: 0 0 16px #d4e5fa80;
-    transition: all ease-in 0.5s;
-}
-
-.color-mode .cc-toggle.dark {
-    --bg: #13161c;
-    outline: 2px solid #1a1f29;
-    box-shadow: none;
-}
-
-.color-mode .cc-toggle ._input {
-    display: none;
-}
-
-.color-mode .cc-toggle ._input:not(:checked) ~ .button {
-    left: 0;
-    background: #fcca00;
-}
-
-.color-mode .cc-toggle ._input:not(:checked) ~ .button .light {
-    transform: scale(1) rotate(-360deg);
-}
-
-.color-mode .cc-toggle ._input:not(:checked) ~ .button .dark {
-    opacity: 0;
-}
-
-.color-mode .cc-toggle ._input:checked ~ .button {
-    left: 50%;
-    background: #1a1f29;
-}
-
-.color-mode .cc-toggle ._input:checked ~ .button .light {
-    opacity: 0;
-}
-
-.color-mode .cc-toggle ._input:checked ~ .button .dark {
-    transform: scale(1) rotate(360deg);
-}
-
-.color-mode .cc-toggle .button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    width: var(--size);
-    height: var(--size);
-    font-size: 1.25em;
-    border-radius: 50%;
-    background: #e4e7ed;
-    box-shadow: 0 0 8px #2f323840;
-    transition: all ease-in 0.5s;
-}
-
-.color-mode .cc-toggle .light, .color-mode .cc-toggle .dark {
-    transition: all ease-in 0.5s;
-    position: absolute;
-    transform: scale(0);
-}
-
-.color-mode .cc-toggle .light {
-    color: #fff;
-    text-shadow: 0 0 4px #fff;
-}
-
-.color-mode .cc-toggle .dark {
-    color: #fff;
-    text-shadow: 0 0 4px #fff;
 }

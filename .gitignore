@@ -8,11 +8,6 @@
 /vendor/
 ###< symfony/framework-bundle ###
 
-###> phpunit/phpunit ###
-/phpunit.xml
-.phpunit.result.cache
-###< phpunit/phpunit ###
-
 ###> PhpStorm/PhpStorm ###
 /.idea
 ###< PhpStorm/PhpStorm ###
@@ -24,4 +19,8 @@
 
 ###> liip/imagine-bundle ###
 /public/media/cache/
+###< liip/imagine-bundle ###
+
+###> liip/imagine-bundle ###
+/node_modules/
 ###< liip/imagine-bundle ###

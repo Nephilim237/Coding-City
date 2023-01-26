@@ -5,18 +5,6 @@ body {
     color: var(--cc-text-color) !important;
 }
 
-.primary-color {
-    color: var(--cc-primary);
-}
-
-.fw-medium {
-    font-weight: 600 !important;
-}
-
-.fw-semi-bold {
-    font-weight: 700 !important;
-}
-
 .back-to-top {
     position: fixed;
     display: none;
@@ -490,7 +478,7 @@ body {
     bottom: 0;
     font-size: 10px;
     padding: 4px;
-    background-color: var(--cc-primary);
+    background-color: var(--cc-sailing);
     color: var(--cc-white);
     border-radius: 50%;
     height: 24px;

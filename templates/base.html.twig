@@ -16,7 +16,8 @@
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous"
           referrerpolicy="no-referrer"/>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
-    {#    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet"> #}
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
+          rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
@@ -76,7 +77,8 @@
                         {{ app.user.userNaming.firstname ?? app.user.email }}
                         <span>
                         {% if app.user.image.user is defined and app.user.image.image is not null %}
-                            <img src="{{asset('images/user/profile/'~ app.user.image.image) | imagine_filter('profile_image_navbar') }}" alt="Image de
+                            <img src="{{asset('images/user/profile/'~ app.user.image.image) | imagine_filter('profile_image_navbar') }}"
+                                 alt="Image de
                             profil"
                                  width="28"
                         height="28"
@@ -90,8 +92,11 @@
                         </span>
                     </a>
                     <div class="dropdown-menu fade-down m-0">
+                        {% if app.user and is_granted('ROLE_ADMIN') %}
+                            <a href="{{ path('admin') }}" class="dropdown-item">Administration <i  class="ri-dashboard-fill"></i></a>
+                        {% endif %}
                         <a href="{{ path('app_user_profile', {'id': app.user.id}) }}" class="dropdown-item">Mon Profil <i class="fa-solid ms-1
-                        fa-user"></i></a>
+                        fa-user-pen"></i></a>
                         <a href="testimonial.html" class="dropdown-item">Témoignages</a>
                         <a href="{{ path('app_logout') }}" class="dropdown-item">Deconnexion <i class="fa fa-sign-out-alt ms-1"></i></a>
                     </div>
@@ -111,7 +116,7 @@
 {% block body %}{% endblock %}
 
 <!-- Footer Start -->
-<div class="container-fluid bg-sailing text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
+<div class="container-fluid cc-bg-sailing text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
     <div class="container py-5">
         <div class="row g-5">
             <div class="col-lg-3 col-md-6">

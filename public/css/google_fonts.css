@@ -10,20 +10,14 @@
 
 
 :root {
-    /*--primary: #06BBCC;*/
-    /*--light: #F0FBFC;*/
     --dark: #181d38;
-    /*    Sailing Color palette ==== */
     --cc-primary: #e65c4f;
-    --bs-primary: #e65c4f !important;
     --cc-primary-dark: #df3d2e;
-    /*--primary: #326789;*/
     --cc-secondary: #78a6c8;
     --cc-light: #e9eef2;
     --cc-sailing: #326789;
     --cc-white: #ffffff;
     --cc-text-color: #565360;
-    /*--sailing: #e65c4f;*/
 }
 
 .cc-text-primary {
@@ -34,12 +28,36 @@
     color: var(--cc-light);
 }
 
+.cc-text-white {
+    color: var(--cc-white);
+}
+
 .cc-text-color {
     color: var(--cc-text-color);
 }
 
-.bg-sailing {
+.cc-text-dark {
+    color: var(--dark);
+}
+
+.cc-text-sailing {
+    color: var(--cc-sailing);
+}
+
+.cc-bg-sailing {
     background-color: var(--cc-sailing);
+}
+
+.cc-bg-secondary {
+    background-color: var(--cc-secondary);
+}
+
+.cc-bg-light {
+    background-color: var(--cc-light);
+}
+
+.cc-bg-primary {
+    background-color: var(--cc-primary);
 }
 
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
@@ -55,4 +73,12 @@ a {
 
 a:hover {
     color: var(--cc-primary-dark);
+}
+
+.primary-color {
+    color: var(--cc-primary);
+}
+
+.fw-500 {
+    font-weight: 500 !important;
 }

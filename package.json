@@ -1,0 +1,22 @@
+{
+  "name": "the_knowledge",
+  "version": "1.0.0",
+  "description": "Projet de plateforme educative",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scss": "node-sass --watch public/scss -o public/css --output-style compressed"
+  },
+  "keywords": [
+    "codingcity",
+    "the_knowledge"
+  ],
+  "author": "Coding City",
+  "license": "ISC",
+  "dependencies": {
+    "node-sass": "^7.0.3"
+  }
+}

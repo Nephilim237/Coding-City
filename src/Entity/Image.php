@@ -6,6 +6,7 @@ use App\Repository\ImageRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ImageRepository::class)]
 #[Vich\Uploadable]
@@ -16,8 +17,19 @@ class Image
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\File(
+        maxSize: '10Mi',
+        mimeTypes: ['image/png', 'image/jpeg', 'image/webp'],
+        maxSizeMessage: 'Fichier volumineux ({{ size }} {{ suffix }}). La taille maximale est {{ limit }} {{ suffix }}.',
+        mimeTypesMessage: "Seul les images au format {{types}} sont autorisées.",
+        uploadIniSizeErrorMessage: "Fichier volumineux. PHP autorise {{ limit }} {{ suffix }}."
+    )]
+    #[Assert\Image(
+        allowLandscape: false,
+    )]
     #[Vich\UploadableField(mapping: 'users', fileNameProperty: 'image')]
     private ?File $imageFile = null;
+
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
@@ -72,6 +84,14 @@ class Image
     {
         return $this->imageFile;
     }
+
+    public function getAvatarUri(?String $liipFilter = ""): ?String
+    {
+        $server_name = $_ENV['SERVER_DOMAIN'];
+        return "{$server_name}/media/cache/{$liipFilter}/images/user/profile/{$this->getImage()}";
+    }
+
+
 
     public function __serialize(): array
     {
