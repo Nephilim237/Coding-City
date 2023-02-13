@@ -55,17 +55,24 @@
             <a href="{{ path('admin') }}" class="menu-section-link"><i class="ri-dashboard-fill"></i>Tableau de bord</a>
         </li>
         <li class="has-dropdown">
+            <a href="#" class="cc-menu-label menu-section-link"><i class="fa-solid fa-list-check"></i> Posts</a>
+            <ul class="sidebar-dropdown list-unstyled">
+                <li><a href="{{ path('post_add') }}"><i class="fa-solid fa-folder-plus"></i> Nouveau Post</a></li>
+                <li><a href="{{ path('post_list') }}"><i class="fa-solid fa-list-check"></i> Liste des posts</a></li>
+            </ul>
+        </li>
+        <li class="has-dropdown">
             <a href="#" class="cc-menu-label menu-section-link"><i class="fa-solid fa-users"></i> Utilisateurs</a>
             <ul class="sidebar-dropdown list-unstyled">
-                <li><a href="{{ path('admin_users') }}"><i class="fa-solid fa-user-group"></i> Liste des utilisateurs</a></li>
                 <li><a href="{{ path('admin_user_add') }}"><i class="fa-solid fa-user-plus"></i> Nouvel utilisateur</a></li>
+                <li><a href="{{ path('admin_users') }}"><i class="fa-solid fa-user-group"></i> Liste des utilisateurs</a></li>
             </ul>
         </li>
         <li class="has-dropdown">
             <a href="#" class="cc-menu-label menu-section-link"><i class="fa-solid fa-list-check"></i> Categories</a>
             <ul class="sidebar-dropdown list-unstyled">
-                <li><a href="{{ path('category_list') }}"><i class="fa-solid fa-list-check"></i> Liste des categories</a></li>
                 <li><a href="{{ path('category_add') }}"><i class="fa-solid fa-folder-plus"></i> Nouvelle categorie</a></li>
+                <li><a href="{{ path('category_list') }}"><i class="fa-solid fa-list-check"></i> Liste des categories</a></li>
             </ul>
         </li>
     </ul>
@@ -105,6 +112,14 @@
                             <li>
                                 <a href="{{ path('admin') }}" class="dropdown-item"><span class="material-icons-sharp">dashboard</span> Tableau de
                                     bord </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('app_user_profile', {'id': app.user.id}) }}" class="dropdown-item"><span
+                                            class="material-icons-sharp">manage_accounts</span> Mon Profil </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('post_add') }}" class="dropdown-item"><span class="material-icons-sharp">post_add</span> Publier
+                                </a>
                             </li>
 
                             <li>
@@ -154,6 +169,7 @@
     <div class="cc-fab">
         <a href="{{ path('admin_user_add') }}" class="sub-fab-buttons" title="Nouvel Utilisateur"><i class="fa-solid fa-user-plus"></i></a>
         <a href="{{ path('category_add') }}" class="sub-fab-buttons" title="Nouvelle Catégorie"><i class="fa-solid fa-folder-plus"></i></a>
+        <a href="{{ path('post_add') }}" class="sub-fab-buttons" title="Publier"><span class="material-icons-sharp">post_add</span></a>
         {#                    <a href="#" class="main-fab"><i class="fa-solid fa-plus"></i></a> #}
     </div>
     <button class="main-fab"><i class="fa-solid fa-pen-nib"></i></button>

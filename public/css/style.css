@@ -1,6 +1,11 @@
 @import url("google_fonts.css");
 /********** Template CSS **********/
 
+
+.material-icons-sharp {
+    vertical-align: middle;
+}
+
 body {
     color: var(--cc-text-color) !important;
 }

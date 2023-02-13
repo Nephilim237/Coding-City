@@ -890,3 +890,11 @@ small {
 .cc-overlay {
 
 }
+
+.form-help-class {
+    color: var(--cc-primary);
+    font-style: italic;
+    font-size: small;
+    font-weight: 600;
+    margin-top: 4px;
+}

@@ -39,6 +39,22 @@ class PostRepository extends ServiceEntityRepository
         }
     }
 
+
+    /**
+     * @param int $numberOfPosts
+     * @return float|int|mixed|string
+     */
+    public function getSomePosts(int $numberOfPosts): mixed
+    {
+        return $this->createQueryBuilder('p')
+            ->select('p')
+            ->setMaxResults($numberOfPosts)
+            ->getQuery()
+            ->getResult()
+            ;
+
+    }
+
 //    /**
 //     * @return Post[] Returns an array of Post objects
 //     */

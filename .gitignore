@@ -21,6 +21,10 @@
 /public/media/cache/
 ###< liip/imagine-bundle ###
 
-###> liip/imagine-bundle ###
-/node_modules/
-###< liip/imagine-bundle ###
+###> node ###
+/node_modules
+###< node ###
+
+###> public/images ###
+/public/images/
+###< public/images ###

@@ -30,6 +30,8 @@
     <!-- Template Stylesheet -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     {% block stylesheets %}
+        <style>
+        </style>
         {{ encore_entry_link_tags('app') }}
     {% endblock %}
 
@@ -93,12 +95,12 @@
                     </a>
                     <div class="dropdown-menu fade-down m-0">
                         {% if app.user and is_granted('ROLE_ADMIN') %}
-                            <a href="{{ path('admin') }}" class="dropdown-item">Administration <i  class="ri-dashboard-fill"></i></a>
+                            <a href="{{ path('admin') }}" class="dropdown-item"><span class="material-icons-sharp">dashboard</span> Administration</a>
                         {% endif %}
-                        <a href="{{ path('app_user_profile', {'id': app.user.id}) }}" class="dropdown-item">Mon Profil <i class="fa-solid ms-1
-                        fa-user-pen"></i></a>
-                        <a href="testimonial.html" class="dropdown-item">Témoignages</a>
-                        <a href="{{ path('app_logout') }}" class="dropdown-item">Deconnexion <i class="fa fa-sign-out-alt ms-1"></i></a>
+                        <a href="{{ path('app_user_profile', {'id': app.user.id}) }}" class="dropdown-item"> <span
+                                    class="material-icons-sharp">manage_accounts</span> Mon Profil </a>
+{#                        <a href="testimonial.html" class="dropdown-item">Témoignages</a>#}
+                        <a href="{{ path('app_logout') }}" class="dropdown-item"><span class="material-icons-sharp">logout</span> Déconnexion </a>
                     </div>
                 </div>
             </div>

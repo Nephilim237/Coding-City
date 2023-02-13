@@ -18,14 +18,11 @@ class Image
     private ?int $id = null;
 
     #[Assert\File(
-        maxSize: '10Mi',
+        maxSize: '2Mi',
         mimeTypes: ['image/png', 'image/jpeg', 'image/webp'],
         maxSizeMessage: 'Fichier volumineux ({{ size }} {{ suffix }}). La taille maximale est {{ limit }} {{ suffix }}.',
         mimeTypesMessage: "Seul les images au format {{types}} sont autorisées.",
         uploadIniSizeErrorMessage: "Fichier volumineux. PHP autorise {{ limit }} {{ suffix }}."
-    )]
-    #[Assert\Image(
-        allowLandscape: false,
     )]
     #[Vich\UploadableField(mapping: 'users', fileNameProperty: 'image')]
     private ?File $imageFile = null;

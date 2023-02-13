@@ -8,10 +8,7 @@
 
 {% block body %}
     <section class="user-profile py-5 my-5">
-        <div class="container">
-            {% for message in app.flashes('profile_update') %}
-                <div class="alert alert-success" role="alert" style="z-index: 10;">{{ message }}</div>
-            {% endfor %}
+        <div class="container pb-5">
             <div class="d-flex justify-content-center align-items-center">
                 <div id="cc-card" class="cc-card">
                     <div class="cc-avatar position-relative ">
@@ -116,6 +113,9 @@
                 </div>
             </div>
         </div>
+        {% for message in app.flashes('profile_update') %}
+            <div class="alert alert-success" role="alert" style="z-index: 10;">{{ message }}</div>
+        {% endfor %}
     </section>
 {% endblock %}
 {% block javascripts %}

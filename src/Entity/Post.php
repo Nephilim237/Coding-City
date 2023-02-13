@@ -7,8 +7,13 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: PostRepository::class)]
+#[Vich\Uploadable]
 class Post
 {
     #[ORM\Id]
@@ -20,25 +25,44 @@ class Post
     private ?string $title = null;
 
     #[ORM\Column(length: 255)]
+    #[Gedmo\Slug(fields: ['title'])]
     private ?string $slug = null;
 
     #[ORM\ManyToOne(inversedBy: 'posts')]
     private ?User $author = null;
 
     #[ORM\Column]
+    #[Gedmo\Timestampable(on: 'create')]
     private ?\DateTimeImmutable $created_at = null;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $content = null;
 
+    #[Assert\File(
+        maxSize: '4Mi',
+        mimeTypes: ['image/png', 'image/jpeg', 'image/webp'],
+        maxSizeMessage: 'Fichier volumineux ({{ size }} {{ suffix }}). La taille maximale est {{ limit }} {{ suffix }}.',
+        mimeTypesMessage: "Seul les images au format {{types}} sont autorisées.",
+        uploadIniSizeErrorMessage: "Fichier volumineux. PHP autorise {{ limit }} {{ suffix }}."
+    )]
+    #[Vich\UploadableField(mapping: 'posts', fileNameProperty: 'image_illustration')]
+    private ?File $postBanner = null;
+
     #[ORM\Column(length: 255)]
     private ?string $image_illustration = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $video = null;
 
     #[ORM\ManyToMany(targetEntity: Category::class, inversedBy: 'posts')]
     private Collection $category;
+
+    #[ORM\Column(nullable: true)]
+    #[Gedmo\Timestampable(on: 'update')]
+    private ?\DateTimeImmutable $updated_at = null;
+
+    #[ORM\Column]
+    private ?bool $active = null;
 
     public function __construct()
     {
@@ -67,13 +91,6 @@ class Post
         return $this->slug;
     }
 
-    public function setSlug(string $slug): self
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
     public function getAuthor(): ?User
     {
         return $this->author;
@@ -89,13 +106,6 @@ class Post
     public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->created_at;
-    }
-
-    public function setCreatedAt(\DateTimeImmutable $created_at): self
-    {
-        $this->created_at = $created_at;
-
-        return $this;
     }
 
     public function getContent(): ?string
@@ -155,6 +165,41 @@ class Post
     {
         $this->category->removeElement($category);
 
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updated_at;
+    }
+
+    public function isActive(): ?bool
+    {
+        return $this->active;
+    }
+
+    public function setActive(bool $active): self
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getPostBanner(): ?File
+    {
+        return $this->postBanner;
+    }
+
+    /**
+     * @param File|null $postBanner
+     * @return Post
+     */
+    public function setPostBanner(?File $postBanner): Post
+    {
+        $this->postBanner = $postBanner;
         return $this;
     }
 }

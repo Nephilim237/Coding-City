@@ -6,8 +6,10 @@ twig:
 
 fos_ck_editor:
     configs:
-        my_config:
+        post_config:
             language: fr
-            toolbar: full
+            toolbar: standard
             uiColor: "#e65c4f"
-            width: "75%"
+            width: "100%"
+            filebrowserBrowseRoute: elfinder
+            filebrowserBrowseRouteParameters: []
