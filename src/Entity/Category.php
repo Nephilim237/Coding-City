@@ -43,6 +43,12 @@ class Category
         $this->posts = new ArrayCollection();
     }
 
+    public function __toString(): string
+    {
+        // TODO: Implement __toString() method.
+        return $this->getTitle();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -151,23 +157,5 @@ class Category
         }
 
         return $this;
-    }
-
-    /**
-     * @param SluggerInterface $slugger
-     * @return Category
-     */
-    public function setSlugger(SluggerInterface $slugger): Category
-    {
-        $this->slugger = $slugger;
-        return $this;
-    }
-
-    /**
-     * @return SluggerInterface
-     */
-    public function getSlugger(): SluggerInterface
-    {
-        return $this->slugger;
     }
 }

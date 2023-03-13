@@ -18,6 +18,7 @@ security:
             lazy: true
             provider: app_user_provider
             custom_authenticator: App\Security\UserAuthenticator
+            user_checker: App\Security\UserChecker
             logout:
                 path: app_logout
                 # where to redirect after logout
@@ -40,6 +41,10 @@ security:
          - { path: ^/profile, roles: ROLE_USER }
          - { path: ^/efconnect, role: ROLE_USER }
          - { path: ^/elfinder, role: ROLE_USER }
+
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_USER
+        ROLE_SUPER_ADMIN: [ ROLE_ADMIN ]
 
 when@test:
     security:

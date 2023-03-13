@@ -52,7 +52,7 @@ class UserController extends AbstractController
         $username = $user->getUserNaming()->getFullUserName() ?? $user->getEmail();
         $entityManager->remove($user);
         $entityManager->flush();
-        $this->addFlash('admin_home_messages', "Suppression de {$username} terminée.");
+        $this->addFlash('admin_home_user', "Suppression de {$username} terminée.");
         return $this->redirectToRoute('admin_users');
     }
 
@@ -99,7 +99,7 @@ class UserController extends AbstractController
 
             $mailer->send($email);
 
-            $this->addFlash('admin_home_messages', "Une invitation a été envoyé à {$user->getEmail()}.");
+            $this->addFlash('admin_home_user', "Une invitation a été envoyé à {$user->getEmail()}.");
 
             return $this->redirectToRoute('admin_users');
         }

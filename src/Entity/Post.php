@@ -125,7 +125,7 @@ class Post
         return $this->image_illustration;
     }
 
-    public function setImageIllustration(string $image_illustration): self
+    public function setImageIllustration(?string $image_illustration): self
     {
         $this->image_illustration = $image_illustration;
 

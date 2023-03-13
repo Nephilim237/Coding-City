@@ -55,6 +55,16 @@ class PostRepository extends ServiceEntityRepository
 
     }
 
+    public function getActivePostsForPublicBlog() {
+        return $this
+            ->createQueryBuilder('p')
+            ->where('p.active = 1')
+            ->orderBy('p.created_at', 'DESC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
 //    /**
 //     * @return Post[] Returns an array of Post objects
 //     */

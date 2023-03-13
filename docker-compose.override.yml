@@ -1,14 +1,13 @@
 version: '3'
 
 services:
-###> doctrine/doctrine-bundle ###
-  database:
+  ###> typesense/typesense-bundle ###
+  typesense:
+    image: typesense/typesense:0.24.0
+    restart: on-failure
     ports:
-      - "5432"
-###< doctrine/doctrine-bundle ###
-
-###> symfony/mailer ###
-  mailer:
-    image: schickling/mailcatcher
-    ports: [1025, 1080]
-###< symfony/mailer ###
+      - "8108:8108"
+    volumes:
+      - ./typesense-data:/data
+    command: '--data-dir /data --api-key=xyz --enable-cors'
+###< typesense/typesense-bundle ###

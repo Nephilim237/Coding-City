@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Resultat de la recherche{% endblock %}
+
+{% block body %}
+
+<section class="section-form py-5 my-5">
+    <div class="container">
+        {% for result in results %}
+            {{ dump(result) }}
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

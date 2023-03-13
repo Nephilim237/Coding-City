@@ -65,7 +65,7 @@ class Image
     }
 
     /**
-     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageFile
+     * @param File|null $imageFile
      * @return Image
      */
     public function setImageFile(?File $imageFile): Image

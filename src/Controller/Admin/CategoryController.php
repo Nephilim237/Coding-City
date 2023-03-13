@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CategoryController extends AbstractController
 {
-    #[Route('admin/category', name: 'category_list')]
+    #[Route('admin/categories', name: 'category_list')]
     public function index(CategoryRepository $categoryRepository): Response
     {
         return $this->render('admin/category/index.html.twig', [

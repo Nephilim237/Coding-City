@@ -3,10 +3,16 @@
 
 <head>
     <meta charset="utf-8">
-    <title>{% block title %}Administration{% endblock %} | The Knowledge</title>
+    <title>{% block title %}Administration{% endblock %} | Coding City</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Author" name="Coding City">
     <meta content="Learning Website" name="Back-office de la plate-forme The Knowledge">
+
+    {# Favicon link #}
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('favicon/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ asset('favicon/site.webmanifest') }}">
 
     <!-- Favicon -->
     <link href="{{ asset('img/') }}" rel="icon">
@@ -55,7 +61,7 @@
             <a href="{{ path('admin') }}" class="menu-section-link"><i class="ri-dashboard-fill"></i>Tableau de bord</a>
         </li>
         <li class="has-dropdown">
-            <a href="#" class="cc-menu-label menu-section-link"><i class="fa-solid fa-list-check"></i> Posts</a>
+            <a href="#" class="cc-menu-label menu-section-link"><i class="fa-solid fa-newspaper"></i> Posts</a>
             <ul class="sidebar-dropdown list-unstyled">
                 <li><a href="{{ path('post_add') }}"><i class="fa-solid fa-folder-plus"></i> Nouveau Post</a></li>
                 <li><a href="{{ path('post_list') }}"><i class="fa-solid fa-list-check"></i> Liste des posts</a></li>
@@ -69,16 +75,16 @@
             </ul>
         </li>
         <li class="has-dropdown">
-            <a href="#" class="cc-menu-label menu-section-link"><i class="fa-solid fa-list-check"></i> Categories</a>
+            <a href="#" class="cc-menu-label menu-section-link"><i class="fa-solid fa-tags"></i> Categories</a>
             <ul class="sidebar-dropdown list-unstyled">
-                <li><a href="{{ path('category_add') }}"><i class="fa-solid fa-folder-plus"></i> Nouvelle categorie</a></li>
+                <li><a href="{{ path('category_add') }}"><i class="fa-solid fa-tag"></i>  Nouvelle categorie</a></li>
                 <li><a href="{{ path('category_list') }}"><i class="fa-solid fa-list-check"></i> Liste des categories</a></li>
             </ul>
         </li>
     </ul>
 </aside>
 
-<div id="wrapper">
+<div id="wrapper" class="h-100">
 
     <nav class="navbar navbar-expand-md">
         <div class="container-fluid mx-2">
@@ -123,7 +129,7 @@
                             </li>
 
                             <li>
-                                <a class="dropdown-item" href="#"><span class="material-icons-sharp">rss_feed</span> Blog </a>
+                                <a class="dropdown-item" href="{{ path('blog_home') }}"><span class="material-icons-sharp">rss_feed</span> Blog </a>
                             </li>
                             <li>
                                 <hr class="dropdown-divider">

@@ -5,6 +5,10 @@
     /* Just For Test */
 }
 
+.uppercase-tracking {
+    letter-spacing: 2px;
+}
+
 :root {
     /* Global */
     --cc-lime-green: hsl(163, 72%, 41%);
@@ -75,6 +79,14 @@ body {
 
 .text-blue {
     color: var(--cc-facebook);
+}
+
+.theme-bg {
+    background-color: var(--cc-theme-bg) !important;
+}
+
+.theme-bg-secondary {
+    background-color: var(--cc-theme-text-secondary);
 }
 
 h1, h2, h3 {
